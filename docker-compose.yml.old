@@ -1,0 +1,14 @@
+version: '3'
+services:
+  es:
+    image: elasticsearch:7.6.0
+    environment:
+      - cluster.initial_master_nodes=elasticsearch
+      - node.name={{.Node.Hostname}}
+      - cluster.name=docker-cluster
+      - cluster.initial_master_nodes=node1
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
